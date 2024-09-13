@@ -1,0 +1,41 @@
+const fs = require('fs')
+const crypto = require('crypto')
+const axios = require('axios')
+
+function getProduk(DigiflazzUser, DigiflazzKey, persen) {
+  let code = "pricelist";
+
+  let hasho = crypto
+    .createHash("md5")
+    .update(DigiflazzUser + DigiflazzKey + code)
+    .digest("hex");
+
+  var config = {
+    method: "POST", 
+    url: `https://${global.digiFlazz}/v1/price-list`, 
+    data: {
+      cmd: "prepaid",
+      username: DigiflazzUser,
+      sign: hasho,
+    },
+  };
+
+  axios(config)
+    .then(function (response) {
+      let data = JSON.stringify(response.data.data);
+      fs.writeFileSync("./SETTING/DB/dataPrepaid.json", data);
+      let dataup = JSON.parse(fs.readFileSync("./SETTING/DB/dataPrepaid.json"));
+            let persentase = persen;
+dataup.forEach((i) => (i.price += i.price * (persentase / 100)));
+ 
+let updatedData = JSON.stringify(dataup);
+
+fs.writeFileSync("./SETTING/DB/dataPrepaid.json", updatedData);
+    })
+
+    .catch((error) => {
+      console.log("Gagal");
+    });
+}
+
+module.exports = { getProduk }

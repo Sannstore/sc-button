@@ -1,0 +1,24 @@
+[
+  {
+    "buyer": "6285174279764@s.whatsapp.net",
+    "status": "PAID",
+    "jam": "10:23:50",
+    "waktu": "28/06/24",
+    "no_pembayaran": "ZN280624NV87026",
+    "method": "MANUAL",
+    "jumlah": "400512",
+    "fee": "0",
+    "total": "400512"
+  },
+  {
+    "buyer": "6285391229323@s.whatsapp.net",
+    "status": "PAID",
+    "jam": "22:00:05",
+    "waktu": "30/06/24",
+    "no_pembayaran": "QkGare8pVNucZ4JbQt7w",
+    "method": "QRIS",
+    "jumlah": "1973",
+    "fee": "0",
+    "total": "2000"
+  }
+]
